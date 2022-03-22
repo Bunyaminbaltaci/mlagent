@@ -11,14 +11,28 @@ public class MoveToGoalAgent : Agent
     [SerializeField] private Material winmaterial;
     [SerializeField] private Material losematerial;
     [SerializeField] private MeshRenderer floormeshRenderer;
+    private float targetx, targetz, xdeger, zdeger;
+
+    public void randomdeger()
+    {
+        targetx = Random.Range(-14f, 14f);
+        targetz = Random.Range(-14f, 14f);
+        xdeger = Random.Range(-14f, 14f);
+        zdeger = Random.Range(-14f, 14f);
+        if (Mathf.Abs(targetx-xdeger)<1f|| Mathf.Abs(targetz-zdeger)<1f)
+        {
+            randomdeger();
+        }
 
 
+    }
 
 
     public override void OnEpisodeBegin()
     {
-        transform.localPosition = new Vector3(Random.Range(-14f,14f),0,Random.Range(-14f,14f));
-        target.localPosition = new Vector3(Random.Range(-14f, 14f), 0, Random.Range(-14f, 14f));
+        randomdeger();
+        transform.localPosition = new Vector3(xdeger,0,zdeger);
+        target.localPosition = new Vector3(targetx, 0, targetz);
         
 
 
